@@ -1,9 +1,11 @@
 import numpy as np
 from collections import defaultdict
 
+
 def euclidean_distance(x1, x2):
     distance = np.sqrt(np.sum((x1 - x2) ** 2))
     return distance
+
 
 class KNN:
     def __init__(self, k=3):
@@ -28,7 +30,7 @@ class KNN:
         k_nearest_labels = [self.y_train[i] for i in k_indices]
         k_nearest_distances = [distances[i] for i in k_indices]
 
-        # Weighted voting thay vì Distance voting
+        # Major voting thay vì Distance voting
         label_weights = defaultdict(float)
 
         for label, dist in zip(k_nearest_labels, k_nearest_distances):
@@ -39,3 +41,5 @@ class KNN:
 
         # Trả về nhãn có trọng số cao nhất
         return max(label_weights, key=label_weights.get)
+
+
